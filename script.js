@@ -73,13 +73,33 @@ function singUp() {
 
 
 $(document).ready(function(){
-    $.ajax('json.json', {
-        dataType: 'json',
-        contentType: 'application/json',
-        cache: false
+
+
+
+    $('.boton').on('click', function(){ //seleccionamos el boton con clase boton y le asignamos una funcion al escuchar un click
+        console.log('presionado')
+        const usuarioJq = $('#myUs').val(); // recuperamos el valor del input usuario con el metodo val()
+        const contraJq = $('#myPass').val(); // recuperamos el valor del input contraseña con el metodo val()
+        console.log(usuarioJq) // imprimimos en consola el valor de myUs
+        console.log(contraJq) // imprimimos en consola el valor de myPass
+
+       $.ajax('json.json', { //se recupera el json a traves de .ajax(url)
+        dataType: 'json', // especifica que el formato de datos recuperado corresponde a JSON
+        contentType: 'application/json', // establece el tipo de contenido de la solicitud a JSON, lo que podría ser necesario dependiendo del API o servidor con el que te estés comunicando.
+        cache: false // evita que el navegador guarde en cache la respuesta, siempre lo solicitara al servidor
     })
-    .done(function(response){
-        console.log(response);
+    .done(function(response){ // metodo que devuelve una respuesta si la solicitud es exitosa (codigo 200 - 299)
+        console.log(response); // imprimimos la respuesta en consola
+        for(let i=0; i<response.length; i++){
+            if(response[i].nombre === usuarioJq  && response[i].contrasena === contraJq.toString()){
+                console.log('hola');
+                break;
+            } else {
+                console.log('nope');
+                }
+        
+        }
+        }); 
     });
 });
 
