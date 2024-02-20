@@ -82,6 +82,9 @@ $(document).ready(function(){
         const contraJq = $('#myPass').val(); // recuperamos el valor del input contraseña con el metodo val()
         console.log(usuarioJq) // imprimimos en consola el valor de myUs
         console.log(contraJq) // imprimimos en consola el valor de myPass
+        let usuarioLogueado; // declaramos una variable para realizar localstorage del usuario
+        let contrasenaLogueada; // declaramos una variable para realizar localstorage de la usuario
+
 
        $.ajax('json.json', { //se recupera el json a traves de .ajax(url)
         dataType: 'json', // especifica que el formato de datos recuperado corresponde a JSON
@@ -94,8 +97,15 @@ $(document).ready(function(){
         for(let i=0; i<response.length; i++){ //creamos un loop para recorrer el array del JSON
             if(response[i].nombre === usuarioJq  && response[i].contrasena === contraJq.toString()){ // buscamos coincidencias de los input con el json
                 console.log('hola');
+
+                usuarioLogueado = usuarioJq; // modificamos el valor de la variable de localstorage por las ingresadas en usuarioJq
+                contrasenaLogueada = contraJq; // modificamos el valor de la variable de localstorage por las ingresadas en contrasenaJq
+                localStorage.setItem("usuarioJq", usuarioLogueado); // almacenamos el usuario en el local storage
+                localStorage.setItem("contrasenaJq", contrasenaLogueada); // almacenamos la contrasena en el local storage
                 encontrado = true // si la comparacion es exitosa, se asignara true a encontrado generando el break
                 break; // break
+
+
             }         
         }
 
