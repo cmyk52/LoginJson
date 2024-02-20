@@ -90,14 +90,17 @@ $(document).ready(function(){
     })
     .done(function(response){ // metodo que devuelve una respuesta si la solicitud es exitosa (codigo 200 - 299)
         console.log(response); // imprimimos la respuesta en consola
-        for(let i=0; i<response.length; i++){
-            if(response[i].nombre === usuarioJq  && response[i].contrasena === contraJq.toString()){
+        let encontrado = false // se genera la variable encontrado en false, con esto podemos generar un break
+        for(let i=0; i<response.length; i++){ //creamos un loop para recorrer el array del JSON
+            if(response[i].nombre === usuarioJq  && response[i].contrasena === contraJq.toString()){ // buscamos coincidencias de los input con el json
                 console.log('hola');
-                break;
-            } else {
-                console.log('nope');
-                }
-        
+                encontrado = true // si la comparacion es exitosa, se asignara true a encontrado generando el break
+                break; // break
+            }         
+        }
+
+        if(!encontrado){ // se genera un nuevo if de encontrado en caso de que la comparacion nunca sea false (este control se realiza separado del control anterior)
+            console.log('nope')
         }
         }); 
     });
