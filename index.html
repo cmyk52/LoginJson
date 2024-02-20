@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./style.css" rel="stylesheet">
+    <script src="./jquery-3.7.1.js"></script>
     <script src="script.js" defer></script>
     <title>Login form</title>
 </head>
 <body>
 
 
-  <div class="wrap">
+<div class="wrap">
     <form class="form"> 
         <p>Username</p>
         <input type="text" placeholder="Username" id="myUs">
@@ -18,8 +19,7 @@
         <input type="password" placeholder="Password" id="myPass">
         <div class="submit">  
             <a href="./signup.html">New account</a>      
-            <input type="button" value="Sign in" id="confirm" onclick="logg()">
-
+            <input type="button" class="boton" value="Sign in" id="confirm" onclick="logg()">
         </div>
 
     </form>

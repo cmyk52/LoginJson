@@ -40,7 +40,7 @@ function singUp() {
     let encontrado = false;
 
     const httpRequest = new XMLHttpRequest();
-    httpRequest.open("GET", "json.json", true);
+    httpRequest.open("POST", "json.json", true);
 
     httpRequest.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
@@ -58,7 +58,7 @@ function singUp() {
             if (!encontrado) {
                 // Realizar el envío solo si el usuario no está tomado
                 const httpPostRequest = new XMLHttpRequest();
-                httpPostRequest.open("POST", "json.json", true);
+                httpPostRequest.open("POST", "./json.json", true);
                 httpPostRequest.setRequestHeader("Content-Type", "application/json");
                 httpPostRequest.send(JSON.stringify(newUser));
 
@@ -71,5 +71,18 @@ function singUp() {
 }
 
 
-    
+
+$(document).ready(function(){
+    $.ajax('json.json', {
+        dataType: 'json',
+        contentType: 'application/json',
+        cache: false
+    })
+    .done(function(response){
+        console.log(response);
+    });
+});
+
+
+
 
