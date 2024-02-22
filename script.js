@@ -76,7 +76,7 @@ $(document).ready(function(){
 
 
 
-    $('.boton').on('click', function(){ //seleccionamos el boton con clase boton y le asignamos una funcion al escuchar un click
+    $('#confirm').on('click', function(){ //seleccionamos el boton con clase boton y le asignamos una funcion al escuchar un click
         console.log('presionado')
         const usuarioJq = $('#myUs').val(); // recuperamos el valor del input usuario con el metodo val()
         const contraJq = $('#myPass').val(); // recuperamos el valor del input contraseña con el metodo val()
@@ -113,9 +113,31 @@ $(document).ready(function(){
             console.log('nope')
         }
         }); 
+        
     });
+
+
+
+    $('#clear').on('click', function () { // limpiar el localstorage
+        console.log('clear')
+        localStorage.clear();
+    });
+
+    //todo list
+
+    $('#add-container').on('click', '#toDo', function(){ // seleccionamos el contenedor y escuchamos el clic del boton toDo 
+        const value = $('#add-container input').val(); // guardamos el valor del input
+        console.log(value) // imprimimos el valor del input en consola
+        const html =`<div class="item">  
+        ` + value  +  ` 
+        <div class="remove"> x </div> ` // creamos una variable a imprimir en el html con el valor del input
+        console.log(html) // imprimimos el nuevo html a imprimir
+
+        $('#places-container').append(html); // utilizamos append para incluir el nuevo elemento del valor del input al final de la lista
+
+        $('#places-container').on('click', '.remove', function(){ // escuchamos el evento del boton remove, seleccionando el contenedor padre
+            const parent = $(this).parent().remove(); // guardamos en una variable el evento, seleccionando el contenedor padre y utilizamos el metodo remove para eliminar el elemento que queremos eliminar
+        })
+    });
+    
 });
-
-
-
-
